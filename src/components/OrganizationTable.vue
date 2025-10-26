@@ -34,13 +34,16 @@
         <td>{{ org.director }}</td>
         <td>{{ org.phone }}</td>
         <td>{{ formatAddress(org.address) }}</td>
-        <td @click.stop="$emit('delete', org.id)" class="delete-cell">X</td>
+        <td @click.stop class="delete-cell">
+          <BaseButton variant="danger" @click="$emit('delete', org.id)">X</BaseButton>
+        </td>
       </tr>
     </tbody>
   </table>
 </template>
 
 <script setup lang="ts">
+import BaseButton from './BaseButton.vue'
 import type { Organization, Address } from '@/types'
 
 defineProps<{
@@ -96,8 +99,6 @@ const formatAddress = (address: Address) => {
 }
 
 .delete-cell {
-  color: red;
-  cursor: pointer;
   text-align: center;
 }
 </style>

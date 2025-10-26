@@ -11,14 +11,13 @@
         <input v-model="form.address.house" placeholder="Дом" />
       </div>
       <div class="modal-actions">
-        <button @click="emit('cancel')" class="cancel-btn">Отмена</button>
-        <button
+        <BaseButton variant="secondary" @click="emit('cancel')">Отмена</BaseButton>
+        <BaseButton
           @click="saveForm()"
           :disabled="!isFormValid"
-          class="ok-btn"
         >
           OK
-        </button>
+        </BaseButton>
       </div>
     </div>
   </div>
@@ -27,6 +26,7 @@
 <script setup lang="ts">
 import { ref, computed, watch } from 'vue'
 import PhoneInput from './PhoneInput.vue'
+import BaseButton from './BaseButton.vue'
 import type { Organization } from '@/types'
 
 // TODO: добавить валидацию email
@@ -64,7 +64,7 @@ const isFormValid = computed(() => {
          form.value.address.street && 
          form.value.address.house
   
-  console.log('valid:', isValid)
+  // console.log('valid:', isValid)
   return isValid
 })
 
@@ -135,27 +135,5 @@ watch(() => props.organization, (org) => {
   display: flex;
   justify-content: flex-end;
   gap: 10px;
-}
-
-.cancel-btn {
-  padding: 8px 16px;
-  border: 1px solid #ddd;
-  background: white;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.ok-btn {
-  padding: 8px 16px;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.ok-btn:disabled {
-  background: #ccc;
-  cursor: not-allowed;
 }
 </style>

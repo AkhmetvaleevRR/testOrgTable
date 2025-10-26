@@ -1,24 +1,26 @@
 <template>
   <div class="pagination">
-    <button
+    <BaseButton
+      variant="secondary"
       @click="$emit('prev')"
       :disabled="currentPage === 1"
-      class="page-btn"
     >
       Назад
-    </button>
+    </BaseButton>
     <span>Страница {{ currentPage }} из {{ totalPages }}</span>
-    <button
+    <BaseButton
+      variant="secondary"
       @click="$emit('next')"
       :disabled="currentPage === totalPages"
-      class="page-btn"
     >
       Вперед
-    </button>
+    </BaseButton>
   </div>
 </template>
 
 <script setup lang="ts">
+import BaseButton from './BaseButton.vue'
+
 defineOptions({
   name: 'PaginationComponent'
 })
@@ -40,18 +42,5 @@ defineEmits<{
   justify-content: center;
   align-items: center;
   gap: 15px;
-}
-
-.page-btn {
-  padding: 8px 16px;
-  border: 1px solid #ddd;
-  background: white;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.page-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
 }
 </style>

@@ -2,7 +2,7 @@
   <div class="app">
     <div class="controls">
       <SearchInput v-model="store.searchQuery" />
-      <button @click="showAddModal = true" class="add-btn">Добавить</button>
+      <BaseButton @click="showAddModal = true">Добавить</BaseButton>
     </div>
 
     <OrganizationTable
@@ -44,6 +44,7 @@ import SearchInput from '@/components/SearchInput.vue'
 import OrganizationTable from '@/components/OrganizationTable.vue'
 import Pagination from '@/components/Pagination.vue'
 import OrganizationModal from '@/components/OrganizationModal.vue'
+import BaseButton from '@/components/BaseButton.vue'
 import { useOrganizationsStore } from '@/stores/organizations'
 import type { Organization } from '@/types'
 
@@ -53,14 +54,14 @@ const showEditModal = ref(false)
 const editingOrg = ref<Organization | null>(null)
 
 const addOrg = (orgData: Omit<Organization, 'id'>) => {
-  console.log(orgData.name)
+  // console.log(orgData.name)
   store.addOrg(orgData)
   showAddModal.value = false
   // TODO: добавить уведомление
 }
 
 const editOrg = (org: Organization) => {
-  console.log(org.id, org.name)
+  // console.log(org.id, org.name)
   editingOrg.value = { ...org }
   showEditModal.value = true
 }
@@ -89,14 +90,5 @@ onMounted(async () => {
   display: flex;
   gap: 15px;
   margin-bottom: 20px;
-}
-
-.add-btn {
-  padding: 8px 16px;
-  background: #007bff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
 }
 </style>
