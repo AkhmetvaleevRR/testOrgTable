@@ -2,7 +2,7 @@
   <div class="search-container">
     <input
       :value="modelValue"
-      @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
+      @input="handleInputUpdate"
       type="text"
       placeholder="Поиск по ФИО директора..."
       class="search-input"
@@ -15,9 +15,13 @@ defineProps<{
   modelValue: string
 }>()
 
-defineEmits<{
+const emit = defineEmits<{
   'update:modelValue': [value: string]
 }>()
+
+const handleInputUpdate = (event: Event) => {
+  emit('update:modelValue', (event.target as HTMLInputElement).value)
+} 
 </script>
 
 <style scoped>

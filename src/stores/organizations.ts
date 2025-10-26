@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, computed, watch } from 'vue'
+import { ref, computed } from 'vue'
 import type { Organization } from '@/types'
 export const useOrganizationsStore = defineStore('organizations', () => {
   const organizations = ref<Organization[]>([])
