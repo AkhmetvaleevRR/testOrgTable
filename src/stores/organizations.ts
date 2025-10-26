@@ -50,14 +50,14 @@ export const useOrganizationsStore = defineStore('organizations', () => {
   }
 
   const addOrg = (orgData: Omit<Organization, 'id'>) => {
-    console.log('store: ', orgData)
+    // console.log('store: ', orgData)
     const org: Organization = {
       id: Date.now(), // генерация рандомного ID
       ...orgData,
     }
 
     organizations.value.push(org)
-    console.log(organizations.value.length)
+    // console.log(organizations.value.length)
     saveToLocalStorage()
   }
 
@@ -70,9 +70,9 @@ export const useOrganizationsStore = defineStore('organizations', () => {
   }
 
   const deleteOrg = (id: number) => {
-    const oldCount = organizations.value.length
+    // const oldCount = organizations.value.length
     organizations.value = organizations.value.filter((org) => org.id !== id)
-    console.log(oldCount, organizations.value.length)
+    // console.log(oldCount, organizations.value.length)
     saveToLocalStorage()
   }
 
@@ -86,7 +86,7 @@ export const useOrganizationsStore = defineStore('organizations', () => {
       if (saved) {
         const data = JSON.parse(saved)
         organizations.value = data
-        console.log(data.length)
+        // console.log(data.length)
       } else {
         // тестовые данные для первой загрузки
         const testData = [
@@ -114,7 +114,7 @@ export const useOrganizationsStore = defineStore('organizations', () => {
           },
         ]
         organizations.value = testData
-        console.log('test data')
+        // console.log('test data')
         saveToLocalStorage()
       }
     } catch (e) {
